@@ -44,4 +44,9 @@ public class FileUtils {
 
 	}
 
+	public static boolean areFileEqual(File f1, File f2) {
+		// TODO
+		return false;
+	}
+
 }
