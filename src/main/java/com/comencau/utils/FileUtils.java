@@ -1,4 +1,4 @@
-package com.syngenta.nicoutils;
+package com.comencau.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
