@@ -40,4 +40,8 @@ public class FileUtils {
 		return n;
 	}
 
+	public static void bufferedReader(File file) {
+
+	}
+
 }
