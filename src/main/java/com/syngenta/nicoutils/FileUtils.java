@@ -40,4 +40,8 @@ public class FileUtils {
 		return n;
 	}
 
+	public static boolean areFileEqual(File f1, File f2) {
+		return false;
+	}
+
 }
