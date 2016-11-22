@@ -5,9 +5,8 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static com.syngenta.utils.file.FileUtils.bufferedReader;
-import static com.syngenta.utils.file.FileUtils.getFileFromClassPath;
-import static com.syngenta.utils.file.FileUtils.getNumberOfLines;
+import static com.comencau.utils.file.FileUtils.getFileFromClassPath;
+import static com.comencau.utils.file.FileUtils.getNumberOfLines;
 
 /**
  * TODO
