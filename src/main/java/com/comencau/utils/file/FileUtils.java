@@ -168,8 +168,10 @@ public class FileUtils {
         dir.delete();
     }
 
-    public static void moveFileOnDesktop(File f) {
-        f.renameTo(new File(System.getProperty("user.home") + "/Desktop", f.getName()));
+    public static File moveFileOnDesktop(File f) {
+        File newFile = new File(System.getProperty("user.home") + "/Desktop", f.getName());
+        f.renameTo(newFile);
+        return newFile;
     }
 
 }
