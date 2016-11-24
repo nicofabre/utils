@@ -4,10 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 
-import static com.syngenta.utils.file.FileUtils.bufferedReader;
-import static com.syngenta.utils.file.FileUtils.getFileFromClassPath;
+import static com.comencau.utils.file.FileUtils.bufferedReader;
+import static com.comencau.utils.file.FileUtils.getFileFromClassPath;
 
 /**
  * TODO

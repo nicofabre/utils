@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 
-import static com.syngenta.utils.file.FileUtils.*;
+import static com.comencau.utils.file.FileUtils.*;
 
 /**
  * TODO

@@ -1,7 +1,7 @@
 package com.comencau.utils.file;
 
-import com.syngenta.utils.function.BiConsumer;
-import com.syngenta.utils.function.Consumer;
+import com.comencau.utils.function.BiConsumer;
+import com.comencau.utils.function.Consumer;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -25,6 +25,7 @@ public class FileUtils {
      * Size of the buffers used to read file content
      */
     public final static int FILE_BUFFER_SIZE = 1024 * 4;
+
     public static final File DESKTOP = new File(System.getProperty("user.home") + "/Desktop");
 
     /**

@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static com.syngenta.utils.file.FileUtils.getFileFromClassPath;
-import static com.syngenta.utils.file.FileUtils.lineHandler;
+import static com.comencau.utils.file.FileUtils.getFileFromClassPath;
+import static com.comencau.utils.file.FileUtils.lineHandler;
 import static org.junit.Assert.assertEquals;
 
 /**
