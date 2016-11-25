@@ -24,8 +24,38 @@ public class FileUtils {
     /**
      * Size of the buffers used to read file content
      */
-    public final static int FILE_BUFFER_SIZE = 1024 * 4;
+    public final static int FILE_BUFFER_SIZE = 1024 * 8;
+
+    /**
+     * The Desktop folder
+     */
     public static final File DESKTOP = new File(System.getProperty("user.home") + "/Desktop");
+
+    /**
+     * Create a temporary file ending with ".tmp"
+     *
+     * @return a temporary file.
+     */
+    public static File tempFile() {
+        try {
+            return File.createTempFile("tmp_", ".tmp");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Create a temporary file ending with ".zip"
+     *
+     * @return a temporary file with ".zip" extension.
+     */
+    public static File tempZipFile() {
+        try {
+            return File.createTempFile("tmp_", ".zip");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Get the number of lines in a file.
@@ -76,8 +106,14 @@ public class FileUtils {
         });
     }
 
-    public static void bufferedWriter(File f, Consumer<BufferedWriter> bufferedWriterHandler) {
-        try (FileOutputStream fos = new FileOutputStream(f);
+    /**
+     * Creates a BufferedWriter for the given file and give it to a Consumer to be handled.
+     *
+     * @param file                  the file to be written with a BufferedWriter
+     * @param bufferedWriterHandler Consumer to handle the BufferedWriter
+     */
+    public static void bufferedWriter(File file, Consumer<BufferedWriter> bufferedWriterHandler) {
+        try (FileOutputStream fos = new FileOutputStream(file);
              OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
              BufferedWriter bw = new BufferedWriter(osw)) {
             bufferedWriterHandler.accept(bw);
@@ -86,6 +122,25 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Creates a temporary file and a BufferedWriter to write within. Gives the BufferedWriter to a callback
+     * Consumer to handle it.
+     *
+     * @param bufferedWriterHandler Consumer as a callback handler for the BufferedWriter to write in the file
+     * @return the file that has been written
+     */
+    public static File bufferedWriter(Consumer<BufferedWriter> bufferedWriterHandler) {
+        File file = FileUtils.tempFile();
+        bufferedWriter(file, bufferedWriterHandler);
+        return file;
+    }
+
+    /**
+     * Get a file from the classpath.
+     *
+     * @param path path relative to the classloader
+     * @return the matching file
+     */
     public static File getFileFromClassPath(String path) {
         URL url = ClassLoader.getSystemResource(path);
         try {
@@ -96,11 +151,11 @@ public class FileUtils {
     }
 
     /**
-     * Check if 2 files have the same content.
+     * Check if 2 files have the same content. The checking is done byte by byte.
      *
-     * @param f1
-     * @param f2
-     * @return
+     * @param f1 1st file to be compared
+     * @param f2 2nd file to be compared
+     * @return true if the 2 files have exactly the same bytes, false otherwise
      */
     public static boolean areFilesContentEqual(File f1, File f2) {
         if (!f1.isFile()) throw new IllegalArgumentException(f1 + " is not a file");
@@ -123,12 +178,12 @@ public class FileUtils {
     }
 
     /**
-     * Directories are equal if they contain the same files. By same file, it is meant that files have the same name and the same content.
-     * The method is recursive and works with sub folders.
+     * Directories are equal if they contain the same files. By same file, it is meant that files have the same name and
+     * the same content. The method is recursive and works with sub folders.
      *
-     * @param d1
-     * @param d2
-     * @return
+     * @param d1 1st directory to be compared
+     * @param d2 2nd directory to be compared
+     * @return true if the 2 directories are equal (according to the definition above), false otherwise
      */
     public static boolean areDirectoriesContentEqual(File d1, File d2) {
         if (!d1.isDirectory()) throw new IllegalArgumentException(d1 + " is not a directory");
@@ -156,7 +211,7 @@ public class FileUtils {
     /**
      * Recursively delete a directory
      *
-     * @param dir
+     * @param dir the directory to be deleted
      */
     public static void deleteDirectoryRecursively(File dir) {
         if (!dir.exists() || !dir.isDirectory()) throw new IllegalArgumentException(dir + " is not a directory");
@@ -167,6 +222,11 @@ public class FileUtils {
         dir.delete();
     }
 
+    /**
+     * Move the file to the user's desktop (Windows). The file keeps the same name.
+     *
+     * @param f
+     */
     public static void moveFileOnDesktop(File f) {
         f.renameTo(new File(System.getProperty("user.home") + "/Desktop", f.getName()));
     }
