@@ -1,9 +1,10 @@
-package com.comencau.utils;
+package com.comencau.utils.file;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class TransposeMatrixUtils {
         double nbChunks = Math.ceil((double) nbColumns / nbColsPerChunk);
         logger.debug("file length : {} bytes. nb columns : {}. max bytes per chunk : {}. nb columns per chunk : {}. nb chunks : {}.",
                 src.length(), nbColumns, MAX_BYTES_PER_CHUNK, nbColsPerChunk, nbChunks);
-        try (FileWriter fw = new FileWriter(dest); BufferedWriter bw = new BufferedWriter(fw)) {
+        try (FileWriter fw = new FileWriter(dest); java.io.BufferedWriter bw = new java.io.BufferedWriter(fw)) {
             int n = 1;
             for (int i = 0; i < nbColumns; i += nbColsPerChunk) {
                 int lastColumnIndex = Math.min(nbColumns, i + nbColsPerChunk);

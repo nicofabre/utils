@@ -8,7 +8,7 @@ package com.comencau.utils.file;
  */
 public class Config {
 
-    public final static int BUFFER_SIZE = 1024 * 4;
+    public final static int BUFFER_SIZE = 1024 * 8;
 
     public static byte[] getBuffer() {
         return new byte[BUFFER_SIZE];

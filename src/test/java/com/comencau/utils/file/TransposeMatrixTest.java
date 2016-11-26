@@ -1,6 +1,5 @@
 package com.comencau.utils.file;
 
-import com.comencau.utils.TransposeMatrixUtils;
 import org.junit.Test;
 
 import java.io.*;
@@ -8,8 +7,8 @@ import java.io.*;
 import static com.comencau.utils.file.FileUtils.moveFileOnDesktop;
 
 /**
- * @auhtor Nicolas FABRE
- * @date 24/11/2016
+ * @author Nicolas FABRE
+ * @since 24/11/2016
  */
 public class TransposeMatrixTest {
 
